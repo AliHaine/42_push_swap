@@ -2,7 +2,7 @@
 
 bool	is_digit(char c)
 {
-	if (c <= 9 && c >= 0)
+	if (c <= '9' && c >= '0')
 		return (true);
 	return (false);
 }
@@ -27,8 +27,6 @@ int	get_number(char *s)
 {
 	int	nbr;
 
-	if (is_number(s) == false)
-		return false;
 	nbr = ft_atoi(s);
 	return (nbr);
 }

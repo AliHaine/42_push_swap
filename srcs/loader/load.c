@@ -1,24 +1,19 @@
 #include "../../push_swap.h"
 
-bool	init_struct(int n, struct s_core *core)
-{
-	t_cont pile
-	return (true);
-}
-
 void	load_main(char **argv, struct s_core *core)
 {
 	int	i;
 	int	n;
 
-	i = 0;
+	i = 1;
 	while (argv[i])
 	{
+		if (is_number(argv[i]) == false)
+			error_manager(error_not_nbr, core);
 		n = get_number(argv[i]);
-		if (init_struct(n, core) == false)
-			//call struct free
-			//exit
-			break;
+		if (is_val_alr(n, core->p1) == true)
+			error_manager(error_alr_nbr, core);
+		create_new_cont(n, core->p1);
 		i++;
 	}
 }

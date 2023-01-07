@@ -16,8 +16,9 @@ int	ft_atoi(char *s)
 	}
 	while (s[i])
 	{
+
 		result = (result + (s[i] - '0')) * 10;
 		i++;
 	}
-	return (result * sign);
+	return ((result / 10) * sign);
 }

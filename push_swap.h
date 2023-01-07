@@ -12,12 +12,16 @@
 # include <stdio.h>
 # include <stdbool.h>
 
+#define error_alr_nbr "Ce nombre est déjà défini"
+#define error_not_nbr "Seul les nombres sont acceptes"
+
 typedef struct		s_cont
 {
 	int				val;
 	int				index;
 	int				nn;
 	struct s_cont	*next;
+	struct s_cont	*prev;
 }					t_cont;
 
 typedef struct		s_pile
@@ -25,6 +29,7 @@ typedef struct		s_pile
 	struct s_cont	*cont;
 	struct s_cont	*last;
 	struct s_cont	*first;
+	int 			size;
 }					t_pile;
 
 typedef struct		s_core
@@ -34,12 +39,17 @@ typedef struct		s_core
 }					t_core;
 
 void	load_main(char **argv, struct s_core *core);
+void	error_manager(char *msg, t_core *core);
 int		ft_atoi(char *s);
 bool	is_digit(char c);
 bool	is_number(char *s);
 int		get_number(char *s);
-void	init_struct_def_val(struct s_core *core);
-int		pile_size(struct s_pile *p);
+void	init_struct_def_val(t_core *core);
+void	free_struct(t_core *core);
+t_cont*	get_cont_from_index(struct s_pile *p, int index);
+void	swap_elem(short mode, t_core *core);
+bool	create_new_cont(int n, struct s_pile *p);
 bool	is_val_alr(int i, struct s_pile *p);
+void	struct_test(t_pile *p);
 
 #endif
