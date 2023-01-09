@@ -37,18 +37,6 @@ void	update_index(struct s_pile *p, int i)
 	}
 }
 
-bool	copy_cont(t_pile *copy, t_pile *paste, short mode)
-{
-	t_cont *cont;
-
-	cont = malloc(sizeof(t_cont));
-	if (!cont)
-		return (false);
-	cont->val = copy->first->val;
-	cont->nn = copy->first->nn;
-
-}
-
 t_cont*	get_cont_from_index(struct s_pile *p, int index)
 {
 	t_cont *iterator;
@@ -80,14 +68,15 @@ bool	is_val_alr(int i, struct s_pile *p)
 void	struct_test(t_pile *p)
 {
 	t_cont *iterator = p->first;
+	if (p->first)
+		printf("first = %d ", p->first->val);
+	if (p->last)
+		printf("last = %d\n", p->last->val);
 	while (iterator)
 	{
 		printf("val = %d ", iterator->val);
-		printf("index = %d\n", iterator->index);
-		if (iterator->prev) {
-			printf("prev val = %d ", iterator->prev->val);
-			printf("prev index = %d\n", iterator->prev->index);
-		}
+		printf("index = %d ", iterator->index);
+		printf("nn = %d\n", iterator->nn);
 		iterator = iterator->next;
 	}
 }

@@ -13,10 +13,7 @@ int main (int argc, char **argv)
 		return (0);
 	init_struct_def_val(&core);
 	load_main(argv, &core);
-	struct_test(core.p1);
-	swap_elem(0, &core);
-	write(1, "\n", 1);
-	struct_test(core.p1);
+	struct_test(&p1);
 
 	return (0);
 }
