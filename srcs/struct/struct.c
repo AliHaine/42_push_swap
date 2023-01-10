@@ -22,7 +22,6 @@ void	reverse_rotate_elem(short mode, t_core *core)
 void	rotate_elem(short mode, t_core *core)
 {
 	t_pile *target;
-
 	target = core->p2;
 	if (mode == 1)
 		target = core->p1;

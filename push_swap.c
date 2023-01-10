@@ -13,7 +13,7 @@ int main (int argc, char **argv)
 		return (0);
 	init_struct_def_val(&core);
 	load_main(argv, &core);
-	struct_test(&p1);
+	brain(&core);
 
 	return (0);
 }

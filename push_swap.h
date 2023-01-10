@@ -55,5 +55,7 @@ void	swap_elem(short mode, t_core *core);
 bool	create_new_cont(int n, struct s_pile *p);
 bool	is_val_alr(int i, struct s_pile *p);
 void	struct_test(t_pile *p);
+void	struct_test_re(t_pile *p);
+void	brain(t_core *core);
 
 #endif

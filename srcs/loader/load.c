@@ -1,13 +1,38 @@
 #include "../../push_swap.h"
 
-void	set_nn(struct s_pile *p1)
+
+static void	set_base_pile(t_core *core)
 {
+	int	size;
 	int i;
-	int size;
+
+	size = core->p1->size / 2;
+	i = 0;
+	while (1)
+	{
+		if (core->p1->first->nn <= size)
+		{
+			push_elem(1, core);
+			i++;
+			if (i == size)
+				break;
+		}
+		else
+			rotate_elem(1, core);
+	}
+	size = core->p1->size;
+	while (size != 3)
+	{
+		push_elem(1, core);
+		size--;
+	}
+}
+
+static void	set_nn(struct s_pile *p1, int size, int i)
+{
 	int low;
 	t_cont *iterator;
 
-	size = 1;
 	iterator = p1->first;
 	while (size - 1 < p1->size)
 	{
@@ -51,5 +76,6 @@ void	load_main(char **argv, struct s_core *core)
 		create_new_cont(n, core->p1);
 		i++;
 	}
-	set_nn(core->p1);
+	set_nn(core->p1, 1, 0);
+	set_base_pile(core);
 }

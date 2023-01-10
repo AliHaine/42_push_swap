@@ -80,3 +80,19 @@ void	struct_test(t_pile *p)
 		iterator = iterator->next;
 	}
 }
+
+void	struct_test_re(t_pile *p)
+{
+	t_cont *iterator = p->last;
+	if (p->last)
+		printf("first = %d ", p->first->val);
+	if (p->first)
+		printf("last = %d\n", p->last->val);
+	while (iterator)
+	{
+		printf("val = %d ", iterator->val);
+		printf("index = %d ", iterator->index);
+		printf("nn = %d\n", iterator->nn);
+		iterator = iterator->prev;
+	}
+}
