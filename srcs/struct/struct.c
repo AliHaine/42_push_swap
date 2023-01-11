@@ -2,6 +2,7 @@
 
 void	reverse_rotate_elem(short mode, t_core *core)
 {
+	write(1, "rra\n", 4);
 	t_pile *target;
 
 	target = core->p2;
@@ -21,6 +22,7 @@ void	reverse_rotate_elem(short mode, t_core *core)
 
 void	rotate_elem(short mode, t_core *core)
 {
+	write(1, "ra\n", 3);
 	t_pile *target;
 	target = core->p2;
 	if (mode == 1)
@@ -39,6 +41,7 @@ void	rotate_elem(short mode, t_core *core)
 
 void	push_elem(short mode, t_core *core)
 {
+	write(1, "pa\n", 3);
 	t_cont *tmp;
 	t_pile *r;
 	t_pile *g;
@@ -51,8 +54,12 @@ void	push_elem(short mode, t_core *core)
 		r = core->p1;
 		g = core->p2;
 	}
+	if (g->first == NULL)
+		return ;
 	if (g->first->next != NULL)
 		tmp = g->first->next;
+	else
+		tmp = g->first;
 	if (r->first == NULL)
 	{
 		r->first = g->first;
@@ -69,6 +76,8 @@ void	push_elem(short mode, t_core *core)
 	r->first->prev = NULL;
 	g->first = tmp;
 	g->first->prev = NULL;
+	if (tmp == NULL)
+		g->last = NULL;
 	r->size++;
 	g->size--;
 	update_index(g, -1);
@@ -76,6 +85,7 @@ void	push_elem(short mode, t_core *core)
 
 void	swap_elem(short mode, t_core *core)
 {
+	write(1, "sa\n", 3);
 	t_cont *tmp;
 	t_pile *target;
 
@@ -84,7 +94,9 @@ void	swap_elem(short mode, t_core *core)
 		target = core->p1;
 	tmp = target->first->next;
 	target->first->next = tmp->next;
+	target->first->prev = tmp;
 	tmp->next = target->first;
+	tmp->prev = NULL;
 	target->first = tmp;
 	target->first->index = 1;
 	target->first->next->index = 2;
