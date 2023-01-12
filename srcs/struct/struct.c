@@ -2,12 +2,16 @@
 
 void	reverse_rotate_elem(short mode, t_core *core)
 {
-	write(1, "rra\n", 4);
 	t_pile *target;
 
 	target = core->p2;
 	if (mode == 1)
+	{
+		action_writter("rra");
 		target = core->p1;
+	}
+	else
+		action_writter("rrb");
 	update_index(target, 1);
 	target->first->prev = target->last;
 	target->last = target->last->prev;
@@ -17,16 +21,23 @@ void	reverse_rotate_elem(short mode, t_core *core)
 	target->last->next = NULL;
 	target->first->index = 1;
 	if (mode == 3)
+	{
 		reverse_rotate_elem(1, core);
+		action_writter("rrr");
+	}
 }
 
 void	rotate_elem(short mode, t_core *core)
 {
-	write(1, "ra\n", 3);
 	t_pile *target;
 	target = core->p2;
 	if (mode == 1)
+	{
+		action_writter("ra");
 		target = core->p1;
+	}
+	else
+		action_writter("rb");
 	update_index(target, -1);
 	target->last->next = target->first;
 	target->first = target->first->next;
@@ -36,12 +47,14 @@ void	rotate_elem(short mode, t_core *core)
 	target->first->prev = NULL;
 	target->last->index = target->last->prev->index + 1;
 	if (mode == 3)
+	{
+		action_writter("rr");
 		rotate_elem(1, core);
+	}
 }
 
 void	push_elem(short mode, t_core *core)
 {
-	write(1, "pa\n", 3);
 	t_cont *tmp;
 	t_pile *r;
 	t_pile *g;
@@ -51,9 +64,12 @@ void	push_elem(short mode, t_core *core)
 	g = core->p1;
 	if (mode == 2)
 	{
+		action_writter("pa");
 		r = core->p1;
 		g = core->p2;
 	}
+	else
+		action_writter("pb");
 	if (g->first == NULL)
 		return ;
 	if (g->first->next != NULL)
@@ -85,23 +101,31 @@ void	push_elem(short mode, t_core *core)
 
 void	swap_elem(short mode, t_core *core)
 {
-	write(1, "sa\n", 3);
 	t_cont *tmp;
 	t_pile *target;
 
 	target = core->p2;
 	if (mode == 1)
+	{
+		action_writter("sa");
 		target = core->p1;
+	}
+	else
+		action_writter("sb");
 	tmp = target->first->next;
 	target->first->next = tmp->next;
 	target->first->prev = tmp;
 	tmp->next = target->first;
 	tmp->prev = NULL;
 	target->first = tmp;
+	target->first->next->next->prev = target->first->next;
 	target->first->index = 1;
 	target->first->next->index = 2;
 	if (mode == 3)
+	{
 		swap_elem(2, core);
+		action_writter("ss");
+	}
 }
 
 bool create_new_cont(int n, struct s_pile *p)

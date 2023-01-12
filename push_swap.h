@@ -39,6 +39,8 @@ typedef struct		s_core
 }					t_core;
 
 void	load_main(char **argv, struct s_core *core);
+void	sort_base_pile(t_core *core);
+void	action_writter(char *ac);
 void	error_manager(char *msg, t_core *core);
 int		ft_atoi(char *s);
 bool	is_digit(char c);

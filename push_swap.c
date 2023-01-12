@@ -13,6 +13,11 @@ int main (int argc, char **argv)
 		return (0);
 	init_struct_def_val(&core);
 	load_main(argv, &core);
+	/*if (p1.size == 3)
+	{
+		sort_base_pile(&core);
+		return (0);
+	}*/
 	brain(&core);
 
 	return (0);

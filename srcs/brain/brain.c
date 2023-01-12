@@ -2,7 +2,6 @@
 
 static void	sort_a(t_core *core, int needtobe)
 {
-	printf("size = %d\n", core->p1->size);
 	if (needtobe == 1)
 	{
 		push_elem(2, core);
@@ -20,7 +19,9 @@ static void	sort_a(t_core *core, int needtobe)
 	else if (needtobe == core->p1->size - 1)
 	{
 		reverse_rotate_elem(1, core);
+		reverse_rotate_elem(1, core);
 		push_elem(2, core);
+		rotate_elem(1, core);
 		rotate_elem(1, core);
 		rotate_elem(1, core);
 	}
@@ -58,19 +59,10 @@ void	brain(t_core *core)
 	{
 		nn = core->p2->first->nn;
 		needtobe = find_place(core->p1, nn);
-		printf("%d\n", needtobe);
+		//printf(" = %d", needtobe);
 		sort_a(core, needtobe);
 		i++;
-		printf("------------fim------------\n");
-		struct_test(core->p1);
-		printf("\n");
-		struct_test(core->p2);
-		if (i > 50)
+		if (i > 500)
 			break ;
 	}
-	printf("------------fim while------------\n");
-	struct_test(core->p1);
-	printf("\n");
-	struct_test(core->p2);
-	printf("-----------------------\n");
 }

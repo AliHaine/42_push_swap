@@ -1,6 +1,6 @@
 #include "../../push_swap.h"
 
-static void sort_base_pile(t_core *core)
+void sort_base_pile(t_core *core)
 {
 	t_cont *n2;
 	t_cont *n3;
@@ -14,8 +14,8 @@ static void sort_base_pile(t_core *core)
 		reverse_rotate_elem(1, core);
 	else if (core->p1->first->nn > n2->nn && n2->nn > n3->nn)
 	{
-		rotate_elem(1, core);
-		rotate_elem(1, core);
+		swap_elem(1, core);
+		reverse_rotate_elem(1, core);
 	}
 	else if (core->p1->first->nn > n2->nn && n2->nn < n3->nn && core->p1->first->nn < n3->nn)
 		swap_elem(1, core);
@@ -109,6 +109,8 @@ void	load_main(char **argv, struct s_core *core)
 		i++;
 	}
 	set_nn(core->p1, 1, 0);
+	if (core->p1->size == 3)
+		return;
 	set_base_pile(core);
 	sort_base_pile(core);
 }
