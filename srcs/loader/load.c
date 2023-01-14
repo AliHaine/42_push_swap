@@ -14,17 +14,17 @@ void sort_base_pile(t_core *core)
 		reverse_rotate_elem(1, core);
 	else if (core->p1->first->nn > n2->nn && n2->nn > n3->nn)
 	{
+		rotate_elem(1, core);
 		swap_elem(1, core);
-		reverse_rotate_elem(1, core);
 	}
 	else if (core->p1->first->nn > n2->nn && n2->nn < n3->nn && core->p1->first->nn < n3->nn)
 		swap_elem(1, core);
 	else if (core->p1->first->nn > n2->nn && n2->nn < n3->nn && core->p1->first->nn > n3->nn)
 	{
-		swap_elem(1, core);
+		//swap_elem(1, core);
 		reverse_rotate_elem(1, core);
 		reverse_rotate_elem(1, core);
-		swap_elem(1, core);
+		//swap_elem(1, core);
 	}
 	else
 	{

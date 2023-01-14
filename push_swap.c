@@ -19,6 +19,7 @@ int main (int argc, char **argv)
 		return (0);
 	}*/
 	brain(&core);
+	//struct_test(&p1);
 
 	return (0);
 }
