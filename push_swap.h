@@ -59,5 +59,7 @@ bool	is_val_alr(int i, struct s_pile *p);
 void	struct_test(t_pile *p);
 void	struct_test_re(t_pile *p);
 void	brain(t_core *core);
+void	set_nn_to_tab(int *nn, t_core *core);
+int		get_worth(t_core *core);
 
 #endif
