@@ -40,6 +40,7 @@ typedef struct		s_core
 
 void	load_main(char **argv, struct s_core *core);
 void	sort_base_pile(t_core *core);
+bool	is_str_contains(char *src, char *val);
 void	action_writter(char *ac);
 void	error_manager(char *msg, t_core *core);
 int		ft_atoi(char *s);
@@ -56,6 +57,7 @@ void	push_elem(short mode, t_core *core);
 void	swap_elem(short mode, t_core *core);
 bool	create_new_cont(int n, struct s_pile *p);
 bool	is_val_alr(int i, struct s_pile *p);
+void	action_spammer(char *str, int count, t_core *core);
 void	struct_test(t_pile *p);
 void	struct_test_re(t_pile *p);
 void	brain(t_core *core);

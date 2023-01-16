@@ -65,6 +65,34 @@ bool	is_val_alr(int i, struct s_pile *p)
 	return (false);
 }
 
+void	action_spammer(char *str, int count, t_core *core)
+{
+	while (count > 0)
+	{
+		if (is_str_contains(str, "pa"))
+			push_elem(2, core);
+		else if (is_str_contains(str, "pb"))
+			push_elem(1, core);
+		else if (is_str_contains(str, "ra"))
+			rotate_elem(1, core);
+		else if (is_str_contains(str, "rb"))
+			rotate_elem(2, core);
+		else if (is_str_contains(str, "rr"))
+			rotate_elem(3, core);
+		else if (is_str_contains(str, "rra"))
+			reverse_rotate_elem(1, core);
+		else if (is_str_contains(str, "rrb"))
+			reverse_rotate_elem(2, core);
+		else if (is_str_contains(str, "rrr"))
+			reverse_rotate_elem(3, core);
+		else if (is_str_contains(str, "sa"))
+			swap_elem(1, core);
+		else if (is_str_contains(str, "sb"))
+			swap_elem(2, core);
+		count--;
+	}
+}
+
 void	struct_test(t_pile *p)
 {
 	t_cont *iterator = p->first;

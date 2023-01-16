@@ -27,24 +27,30 @@ static void	sort_a(t_core *core, int needtobe)
 	{
 		if (core->p1->size / 2 >= needtobe)
 		{
-			while (save > 1) {
+			while (save > 1)
+			{
 				rotate_elem(1, core);
 				save--;
 			}
 			push_elem(2, core);
-			while (save != needtobe) {
+			while (save != needtobe)
+			{
 				reverse_rotate_elem(1, core);
 				save++;
 			}
 		}
 		else
 		{
-			while (save != core->p1->size + 1) {
+			while (save != core->p1->size + 1)
+			{
 				reverse_rotate_elem(1, core);
 				save++;
+				if (save == 100)
+					return;
 			}
 			push_elem(2, core);
-			while (save != needtobe - 1) {
+			while (save != needtobe - 1)
+			{
 				rotate_elem(1, core);
 				save--;
 			}
@@ -84,10 +90,7 @@ void	brain(t_core *core)
 	{
 		nn = core->p2->first->nn;
 		needtobe = find_place(core->p1, nn);
-		//printf(" = %d", needtobe);
 		sort_a(core, needtobe);
 		i++;
-		if (i > 800)
-			break ;
 	}
 }
