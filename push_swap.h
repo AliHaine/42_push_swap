@@ -57,6 +57,7 @@ void	push_elem(short mode, t_core *core);
 void	swap_elem(short mode, t_core *core);
 bool	create_new_cont(int n, struct s_pile *p);
 bool	is_val_alr(int i, struct s_pile *p);
+int	get_total_cost(t_core *core);
 void	action_spammer(char *str, int count, t_core *core);
 void	struct_test(t_pile *p);
 void	struct_test_re(t_pile *p);

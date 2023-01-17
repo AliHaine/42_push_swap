@@ -1,6 +1,6 @@
 #include "../../push_swap.h"
 
-static void	sort_a(t_core *core, int needtobe)
+/*static void	sort_a(t_core *core, int needtobe)
 {
 	int save = needtobe;
 
@@ -56,41 +56,40 @@ static void	sort_a(t_core *core, int needtobe)
 			}
 		}
 	}
-}
+}*/
 
-static int	find_place(t_pile *p, int nn)
+/*static int	find_place(t_pile *p, int nn)
 {
 	t_cont *iterator;
 
 	if (nn < p->first->nn)
 		return (1);
 	else if (nn > p->last->nn)
-	{
 		return (p->size + 1);
-	}
 	iterator = p->first->next;
 	while (iterator)
 	{
 		if (nn < iterator->nn && nn > iterator->prev->nn)
-		{
 			return (iterator->index);
-		}
 		iterator = iterator->next;
 	}
 	printf("Aucun resultat\n");
 	return (0);
-}
+}*/
 
 void	brain(t_core *core)
 {
-	int	nn;
-	int i =0;
-	int needtobe;
-	while (core->p2->size > 0)
+	/*int	nn;
+	int i = 0;
+	int needtobe;*/
+
+	get_total_cost(core);
+
+	/*while (core->p2->size > 0)
 	{
 		nn = core->p2->first->nn;
 		needtobe = find_place(core->p1, nn);
 		sort_a(core, needtobe);
 		i++;
-	}
+	}*/
 }
