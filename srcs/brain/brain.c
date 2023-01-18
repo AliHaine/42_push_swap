@@ -58,7 +58,7 @@
 	}
 }*/
 
-/*static int	find_place(t_pile *p, int nn)
+static int	find_place(t_pile *p, int nn)
 {
 	t_cont *iterator;
 
@@ -75,15 +75,66 @@
 	}
 	printf("Aucun resultat\n");
 	return (0);
-}*/
+}
+
+void set_toreceive_a(int spam, t_core *core, int place)
+{
+	if (place >= core->p1->size / 2)
+	{
+		action_spammer("rra", spam - 1, core);
+	}
+	else
+		action_spammer("ra", spam - 1, core);
+}
+
+void	set_topush_b(int spam, int index, t_core *core) {
+	if (index >= core->p2->size / 2)
+		action_spammer("rrb", spam, core);
+	else
+		action_spammer("rb", spam, core);
+}
+
+void	action_to_a(int spam, t_core *core, int place)
+{
+	if (spam == 1)
+	{
+		push_elem(2, core);
+		rotate_elem(1, core);
+	}
+	else if (place >= core->p1->size / 2)
+	{
+		push_elem(2, core);
+		action_spammer("ra", spam, core);
+	}
+	else
+	{
+		push_elem(2, core);
+		action_spammer("rra", spam - 1, core);
+	}
+}
 
 void	brain(t_core *core)
 {
 	/*int	nn;
 	int i = 0;
 	int needtobe;*/
+	t_cont *cont;
+	int saveca;
 
-	get_total_cost(core);
+	while (core->p2->size > 0) {
+		struct_test(core->p1);
+		cont = get_cont_from_index(core->p2, get_total_cost(core));
+		printf("value = %d ", cont->val);
+		set_topush_b(costb(cont->index, core->p2) - 1, cont->index, core);
+		saveca = costa(cont, core->p1);
+		int place = find_place(core->p1, core->p2->first->nn);
+		printf("ca = %d place = %d\n", saveca, place);
+		set_toreceive_a(saveca, core, place);
+		//push_elem(2, core);
+		action_to_a(saveca, core, place);
+		//action_spammer("rra", saveca - 1, core);
+		//printf("%d\n", core->p2->size);
+	}
 
 	/*while (core->p2->size > 0)
 	{

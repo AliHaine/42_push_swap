@@ -25,7 +25,7 @@
 	return (0);
 }*/
 
-static int	costb(int index, t_pile *p2)
+int	costb(int index, t_pile *p2)
 {
 	t_cont *iterator;
 
@@ -37,11 +37,11 @@ static int	costb(int index, t_pile *p2)
 		iterator = iterator->next;
 	}
 	if (iterator->index >= p2->size / 2)
-		return (p2->size - iterator->index);
+		return (p2->size - iterator->index + 2);
 	return (iterator->index);
 }
 
-static int	costa(t_cont *iterator, t_pile *p1)
+int	costa(t_cont *iterator, t_pile *p1)
 {
 	t_cont *compa;
 
@@ -49,18 +49,19 @@ static int	costa(t_cont *iterator, t_pile *p1)
 	if (iterator->nn < p1->first->nn)
 		return (0);
 	else if (iterator->nn > p1->last->nn)
-		return (2);
+		return (1);
 	compa = p1->first->next;
 	while (compa)
 	{
 		if (iterator->nn < compa->nn && iterator->nn > compa->prev->nn)
 		{
-			if (iterator->index >= p1->size / 2)
+			if (compa->index >= p1->size / 2)
 			{
-				printf("cost a val = %d, ca cb = %d %d\n", iterator->val, p1->size, iterator->index);
-				return (((p1->size - iterator->index) * 2) + 1);
+				//printf("inifcost a val = %d, ca cb = %d %d\n", iterator->val, (p1->size - (compa->index - 1)), iterator->index);
+				return (((p1->size - (compa->index - 1)) * 2));
 			}
-			return (compa->index);
+			//printf("cost a val = %d, ca cb = %d %d\n", iterator->val, p1->size, iterator->index);
+			return ((compa->index - 1) * 2);
 		}
 		compa = compa->next;
 	}
@@ -73,6 +74,7 @@ int	get_total_cost(t_core *core)
 	int	cb;
 	int *cost;
 	int i = 0;
+	int minval;
 	t_cont *iterator;
 
 	cost = malloc(sizeof(int) * core->p2->size);
@@ -81,19 +83,26 @@ int	get_total_cost(t_core *core)
 	{
 		ca = costa(iterator, core->p1);
 		cb = costb(iterator->index, core->p2);
-		printf("val = %d, ca cb = %d %d\n", iterator->val, ca, cb);
+		//printf("val = %d, ca cb = %d %d\n", iterator->val, ca, cb);
 		cost[i] = ca + cb;
 		iterator = iterator->next;
 		i++;
 	}
+	cost[i] = 0;
 	i = 0;
-	struct_test(core->p1);
+	/*struct_test(core->p1);
 	printf("\n");
-	struct_test(core->p2);
-	while (cost[i])
+	struct_test(core->p2);*/
+	minval = cost[i];
+	while (cost[i++])
 	{
-		printf("ttc = %d\n", cost[i]);
-		i++;
+		if (cost[i] < minval & cost[i] != 0)
+			minval = cost[i];
 	}
-	return ca + cb;
+	i = 0;
+	while (cost[i] != minval)
+		i++;
+	//printf("val = %d, ca cb = %d\n", i, minval);
+	free(cost);
+	return i + 1;
 }

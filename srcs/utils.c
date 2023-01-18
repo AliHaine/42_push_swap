@@ -31,6 +31,7 @@ void	action_writter(char *ac)
 {
 	static int i = 0;
 
+	//return;
 	if (is_str_contains(ac, "sa") || is_str_contains(ac, "sb"))
 	{
 		if (i == 0)
