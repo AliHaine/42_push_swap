@@ -1,30 +1,5 @@
 #include "../../push_swap.h"
 
-/*static int	find_place(t_pile *p, int nn)
-{
-	t_cont *iterator;
-
-	if (nn < p->first->nn)
-		return (1);
-	else if (nn > p->last->nn)
-	{
-		return (p->size + 1);
-	}
-	iterator = p->first->next;
-	while (iterator)
-	{
-		//printf("iterator\n");
-		if (nn < iterator->nn && nn > iterator->prev->nn)
-		{
-
-			return (iterator->index);
-		}
-		iterator = iterator->next;
-	}
-	printf("Aucun resultat\n");
-	return (0);
-}*/
-
 int	costb(int index, t_pile *p2)
 {
 	t_cont *iterator;
@@ -57,10 +32,8 @@ int	costa(t_cont *iterator, t_pile *p1)
 		{
 			if (compa->index >= p1->size / 2)
 			{
-				//printf("inifcost a val = %d, ca cb = %d %d\n", iterator->val, (p1->size - (compa->index - 1)), iterator->index);
 				return (((p1->size - (compa->index - 1)) * 2));
 			}
-			//printf("cost a val = %d, ca cb = %d %d\n", iterator->val, p1->size, iterator->index);
 			return ((compa->index - 1) * 2);
 		}
 		compa = compa->next;
@@ -83,16 +56,12 @@ int	get_total_cost(t_core *core)
 	{
 		ca = costa(iterator, core->p1);
 		cb = costb(iterator->index, core->p2);
-		//printf("val = %d, ca cb = %d %d\n", iterator->val, ca, cb);
 		cost[i] = ca + cb;
 		iterator = iterator->next;
 		i++;
 	}
 	cost[i] = 0;
 	i = 0;
-	/*struct_test(core->p1);
-	printf("\n");
-	struct_test(core->p2);*/
 	minval = cost[i];
 	while (cost[i++])
 	{
@@ -102,7 +71,6 @@ int	get_total_cost(t_core *core)
 	i = 0;
 	while (cost[i] != minval)
 		i++;
-	//printf("val = %d, ca cb = %d\n", i, minval);
 	free(cost);
 	return i + 1;
 }
