@@ -32,13 +32,39 @@ int	costa(t_cont *iterator, t_pile *p1)
 		{
 			if (compa->index >= p1->size / 2)
 			{
-				return (((p1->size - (compa->index - 1)) * 2));
+				return (((p1->size - (compa->prev->index)) * 2));
 			}
 			return ((compa->index - 1) * 2);
 		}
 		compa = compa->next;
 	}
 	return (0);
+}
+
+void	set_topush_bb(int spam, int index, t_core *core) {
+	if (index >= core->p2->size / 2)
+	{
+		action_spammer("rrb", spam, core);
+	}
+	else
+		action_spammer("rb", spam, core);
+}
+
+bool grep_worth_val(t_core *core)
+{
+	t_cont *iterator;
+	int i = 0;
+
+	iterator = core->p2->first;
+	while (i++ < 10)
+	{
+		if (iterator->nn < core->p1->first->nn && iterator->nn > core->p1->last->nn)
+		{
+			set_topush_bb(iterator->index - 1, iterator->index - 1, core);
+			return (true);
+		}
+	}
+	return (false);
 }
 
 int	get_total_cost(t_core *core)

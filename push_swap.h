@@ -57,6 +57,7 @@ void	push_elem(short mode, t_core *core);
 void	swap_elem(short mode, t_core *core);
 bool	create_new_cont(int n, struct s_pile *p);
 bool	is_val_alr(int i, struct s_pile *p);
+bool grep_worth_val(t_core *core);
 int	costa(t_cont *iterator, t_pile *p1);
 int	costb(int index, t_pile *p2);
 int	get_total_cost(t_core *core);

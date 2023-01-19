@@ -88,21 +88,20 @@ void set_toreceive_a(int spam, t_core *core, int place)
 
 void	set_topush_b(int spam, int index, t_core *core) {
 	if (index >= core->p2->size / 2)
+	{
 		action_spammer("rrb", spam, core);
+	}
 	else
 		action_spammer("rb", spam, core);
 }
 
 //Repositionne correctement la pile A apres la reception de la valeur de la pile B
-void	action_to_a(int spam, t_core *core, int place)
+void	action_to_a(int spam, t_core *core, int place, int i)
 {
-	push_elem(2, core);
-	if (spam == 0)
-		return ;
 	if (place >= core->p1->size / 2)
 	{
 		//push_elem(2, core);
-		action_spammer("ra", spam + 1, core);
+		action_spammer("ra", spam + 1 + i, core);
 	}
 	else
 	{
@@ -121,6 +120,7 @@ void	brain(t_core *core)
 {
 	t_cont *cont;
 	int saveca;
+	int i = 0;
 
 	while (core->p2->size > 0) {
 		//struct_test(core->p1);
@@ -136,7 +136,14 @@ void	brain(t_core *core)
 		{
 			if (saveca > 0)
 				set_toreceive_a(saveca / 2, core, place);
-			action_to_a(saveca / 2, core, place);
+			push_elem(2, core);
+			while (grep_worth_val(core) == true)
+			{
+				push_elem(2, core);
+				i++;
+			}
+			action_to_a((saveca / 2), core, place, i);
+			i = 0;
 		}
 	}
 }
