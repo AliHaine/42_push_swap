@@ -29,9 +29,14 @@ bool	is_str_contains(char *src, char *val)
 
 void	action_writter(char *ac)
 {
+	static int o = 0;
 	static int i = 0;
 
-	//return;
+	o++;
+	/*if (!is_str_contains(ac, "rb") && !is_str_contains(ac, "ra")
+		&& !is_str_contains(ac, "rrb") && !is_str_contains(ac, "rra"))
+	printf("o= %d\n", o);
+	return;*/
 	if (is_str_contains(ac, "sa") || is_str_contains(ac, "sb"))
 	{
 		if (i == 0)
