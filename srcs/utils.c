@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayagmur <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/21 15:43:40 by ayagmur           #+#    #+#             */
+/*   Updated: 2023/01/21 15:43:42 by ayagmur          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-static	void put_str(char *msg)
+static void	put_str(char *msg)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (msg[i])
@@ -24,19 +36,13 @@ bool	is_str_contains(char *src, char *val)
 			return (false);
 		i++;
 	}
-	return true;
+	return (true);
 }
 
 void	action_writter(char *ac)
 {
-	static int o = 0;
-	static int i = 0;
+	static int	i = 0;
 
-	o++;
-	/*if (!is_str_contains(ac, "rb") && !is_str_contains(ac, "ra")
-		&& !is_str_contains(ac, "rrb") && !is_str_contains(ac, "rra"))
-	printf("o= %d\n", o);
-	return;*/
 	if (is_str_contains(ac, "sa") || is_str_contains(ac, "sb"))
 	{
 		if (i == 0)
@@ -110,7 +116,6 @@ int	ft_atoi(char *s)
 	}
 	while (s[i])
 	{
-
 		result = (result + (s[i] - '0')) * 10;
 		i++;
 	}

@@ -1,13 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cost_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayagmur <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/21 15:43:03 by ayagmur           #+#    #+#             */
+/*   Updated: 2023/01/21 15:43:05 by ayagmur          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../push_swap.h"
+
+static int	get_val(t_cont *iterator, int size)
+{
+	if (iterator->index >= size / 2)
+	{
+		if (!iterator->prev)
+			return (0);
+		if (!iterator->next)
+			return (2);
+		return (((size - (iterator->prev->index)) * 2) - 1);
+	}
+	if (!iterator->prev)
+		return (0);
+	return ((iterator->index) * 2);
+}
 
 static int	find_place_tolowes(t_pile *p)
 {
-	int minv;
-	t_cont *iterator;
+	int		minv;
+	t_cont	*iterator;
 
 	iterator = p->first;
 	minv = iterator->nn;
-	while(iterator)
+	while (iterator)
 	{
 		if (minv > iterator->nn)
 			minv = iterator->nn;
@@ -16,22 +43,8 @@ static int	find_place_tolowes(t_pile *p)
 	iterator = p->first;
 	while (iterator)
 	{
-		if (iterator->nn == minv) {
-			/*if (iterator->index == p->size - 1)
-				return (1);*/
-			if (iterator->index >= p->size / 2)
-			{
-				//printf("in if %d, %d %d\n", p->size, iterator->prev->index, p->last->val);
-				if (!iterator->prev)
-					return (0);
-				if (!iterator->next)
-					return (2);
-				return (((p->size - (iterator->prev->index)) * 2) - 1);
-			}
-			if (!iterator->prev)
-				return (0);
-			return ((iterator->index) * 2);
-		}
+		if (iterator->nn == minv)
+			return (get_val(iterator, p->size));
 		iterator = iterator->next;
 	}
 	return (0);
@@ -39,12 +52,12 @@ static int	find_place_tolowes(t_pile *p)
 
 static int	find_place_tobigger(t_pile *p)
 {
-	int max;
-	t_cont *iterator;
+	int		max;
+	t_cont	*iterator;
 
 	iterator = p->first;
 	max = iterator->nn;
-	while(iterator)
+	while (iterator)
 	{
 		if (max < iterator->nn)
 			max = iterator->nn;
@@ -53,14 +66,10 @@ static int	find_place_tobigger(t_pile *p)
 	iterator = p->first;
 	while (iterator)
 	{
-		if (iterator->nn == max) {
-			/*if (iterator->index == p->size - 1)
-				return (1);*/
+		if (iterator->nn == max)
+		{
 			if (iterator->index >= p->size / 2)
-			{
-				//printf("in if %d, %d %d\n", p->size, iterator->prev->index, p->last->val);
 				return (((p->size - (iterator->prev->index)) * 2) - 1);
-			}
 			return ((iterator->index) * 2);
 		}
 		iterator = iterator->next;
@@ -70,7 +79,7 @@ static int	find_place_tobigger(t_pile *p)
 
 int	costb(int index, t_pile *p2)
 {
-	t_cont *iterator;
+	t_cont	*iterator;
 
 	iterator = p2->first;
 	while (iterator)
@@ -86,13 +95,10 @@ int	costb(int index, t_pile *p2)
 
 int	costa(t_cont *cont, t_pile *p1)
 {
-	t_cont *iterator;
-
+	t_cont	*iterator;
 
 	if (cont->nn < p1->first->nn && cont->nn > p1->last->nn)
 		return (0);
-	/*else if (cont->nn > p1->last->nn && cont->nn <)
-		return (1);*/
 	if (is_bigger_nn(cont->nn, p1))
 		return (find_place_tobigger(p1));
 	else if (is_less_nn(cont->nn, p1))
@@ -108,6 +114,5 @@ int	costa(t_cont *cont, t_pile *p1)
 		}
 		iterator = iterator->next;
 	}
-	printf("valeur non trouve\n");
 	return (0);
 }

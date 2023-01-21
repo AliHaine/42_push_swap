@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayagmur <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/21 15:43:51 by ayagmur           #+#    #+#             */
+/*   Updated: 2023/01/21 15:43:52 by ayagmur          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../push_swap.h"
 
 void	reverse_rotate_elem(short mode, t_core *core)
 {
-	t_pile *target;
+	t_pile	*target;
 
 	target = core->p2;
 	if (mode == 1)
@@ -29,7 +41,8 @@ void	reverse_rotate_elem(short mode, t_core *core)
 
 void	rotate_elem(short mode, t_core *core)
 {
-	t_pile *target;
+	t_pile	*target;
+
 	target = core->p2;
 	if (mode == 1)
 	{
@@ -55,9 +68,9 @@ void	rotate_elem(short mode, t_core *core)
 
 void	push_elem(short mode, t_core *core)
 {
-	t_cont *tmp;
-	t_pile *r;
-	t_pile *g;
+	t_cont	*tmp;
+	t_pile	*r;
+	t_pile	*g;
 
 	tmp = NULL;
 	r = core->p2;
@@ -101,8 +114,8 @@ void	push_elem(short mode, t_core *core)
 
 void	swap_elem(short mode, t_core *core)
 {
-	t_cont *tmp;
-	t_pile *target;
+	t_cont	*tmp;
+	t_pile	*target;
 
 	target = core->p2;
 	if (mode == 1)
@@ -128,9 +141,9 @@ void	swap_elem(short mode, t_core *core)
 	}
 }
 
-bool create_new_cont(int n, struct s_pile *p)
+bool	create_new_cont(int n, struct s_pile *p)
 {
-	t_cont *cont;
+	t_cont	*cont;
 
 	cont = malloc(sizeof(*cont));
 	if (cont == NULL)
