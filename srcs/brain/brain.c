@@ -76,12 +76,6 @@ void set_toreceive_a(int spam, t_core *core, int place)
 	if (place >= core->p1->size / 2)
 	{
 		action_spammer("rra", spam, core);
-		while (1)
-		{
-			if (core->p1->last->nn < core->p2->first->nn)
-				return;
-			reverse_rotate_elem(1, core);
-		}
 	}
 	else
 	{
@@ -108,7 +102,7 @@ void	action_to_a(int spam, t_core *core, int place, int i)
 	}
 	else
 	{
-		action_spammer("rra", spam, core);
+		action_spammer("rra", spam - 1, core);
 	}
 }
 
@@ -131,13 +125,13 @@ void	brain(t_core *core)
 	int i = 0;
 
 	while (core->p2->size > 0) {
-		struct_test(core->p1);
+		//struct_test(core->p1);
 		cont = get_cont_from_index(core->p2, get_total_cost(core));
-		printf("value = %d ", cont->val);
+		//printf("value = %d ", cont->val);
 		set_topush_b(costb(cont->index, core->p2) - 1, cont->index, core);
 		saveca = costa(cont, core->p1);
 		int place = find_place(core->p1, core->p2->first->nn);
-		printf("ca = %d place = %d\n", saveca, place);
+		//printf("ca = %d place = %d\n", saveca, place);
 		if (saveca == 1)
 			set_to_last(core);
 		/*else if (saveca == 0 && place == core->p1->size - 1)
@@ -145,7 +139,12 @@ void	brain(t_core *core)
 		else
 		{
 			if (saveca > 0)
-				set_toreceive_a(saveca / 2, core, place);
+			{
+				if (saveca % 2 > 0 && !is_bigger_nn(cont->nn, core->p1))
+					set_toreceive_a(saveca / 2 + 1, core, place);
+				else
+					set_toreceive_a(saveca / 2, core, place);
+			}
 			push_elem(2, core);
 			while (sncf_grp(core) == true)
 			{
