@@ -120,7 +120,7 @@ void	brain(t_core *core)
 		{
 			if (saveca > 0)
 			{
-				if (saveca % 2 > 0 && !is_bigger_nn(cont->nn, core->p1) && !is_less_nn(cont->nn, core->p1))
+				if (saveca % 2 > 0 && !is_bigger_nn(cont->nn, core->p1))
 					set_toreceive_a(saveca / 2 + 1, core, place);
 				else
 					set_toreceive_a(saveca / 2, core, place);

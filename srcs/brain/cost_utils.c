@@ -24,7 +24,13 @@ static int	get_val(t_cont *iterator, int size)
 	}
 	if (!iterator->prev)
 		return (0);
-	return ((iterator->index) * 2);
+	if ((iterator->index) == 3)
+		return (4);
+	/*if ((iterator->index) == 4)
+		return (4);*/
+	if ((iterator->index) % 2 == 0)
+		return (((iterator->index) * 2) - 2);
+	return ((iterator->index - 1) * 2);
 }
 
 static int	find_place_tolowes(t_pile *p)
