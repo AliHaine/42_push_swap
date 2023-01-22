@@ -12,13 +12,31 @@
 
 #include "../../push_swap.h"
 
+static int	get_minv_val(int *cost)
+{
+	int	i;
+	int	minval;
+
+	i = 0;
+	minval = cost[i];
+	while (cost[i++])
+	{
+		if (cost[i] < minval & cost[i] != 0)
+			minval = cost[i];
+	}
+	i = 0;
+	while (cost[i] != minval)
+		i++;
+	free(cost);
+	return (i + 1);
+}
+
 int	get_total_cost(t_core *core)
 {
 	int		ca;
 	int		cb;
 	int		*cost;
 	int		i;
-	int		minval;
 	t_cont	*iterator;
 
 	cost = malloc(sizeof(int) * core->p2->size);
@@ -35,16 +53,5 @@ int	get_total_cost(t_core *core)
 		i++;
 	}
 	cost[i] = 0;
-	i = 0;
-	minval = cost[i];
-	while (cost[i++])
-	{
-		if (cost[i] < minval & cost[i] != 0)
-			minval = cost[i];
-	}
-	i = 0;
-	while (cost[i] != minval)
-		i++;
-	free(cost);
-	return (i + 1);
+	return (get_minv_val(cost));
 }

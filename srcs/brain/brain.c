@@ -77,7 +77,6 @@ static int	find_place(t_pile *p, int nn)
 			return (iterator->index);
 		iterator = iterator->next;
 	}
-	printf("Aucun resultat\n");
 	return (0);
 }
 
@@ -106,6 +105,7 @@ void	brain(t_core *core)
 	t_cont		*cont;
 	int			saveca;
 	int			i;
+	int 		place;
 
 	i = 0;
 	while (core->p2->size > 0)
@@ -113,7 +113,7 @@ void	brain(t_core *core)
 		cont = get_cont_from_index(core->p2, get_total_cost(core));
 		set_topush_b(costb(cont->index, core->p2) - 1, cont->index, core);
 		saveca = costa(cont, core->p1);
-		int place = find_place(core->p1, core->p2->first->nn);
+		place = find_place(core->p1, core->p2->first->nn);
 		if (saveca == 1)
 			set_to_last(core);
 		else

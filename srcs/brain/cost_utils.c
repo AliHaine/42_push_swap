@@ -26,8 +26,6 @@ static int	get_val(t_cont *iterator, int size)
 		return (0);
 	if ((iterator->index) == 3)
 		return (4);
-	/*if ((iterator->index) == 4)
-		return (4);*/
 	if ((iterator->index) % 2 == 0)
 		return (((iterator->index) * 2) - 2);
 	return ((iterator->index - 1) * 2);
