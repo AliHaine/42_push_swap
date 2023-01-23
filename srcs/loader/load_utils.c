@@ -42,3 +42,19 @@ int	get_number(char *s)
 	nbr = ft_atoi(s);
 	return (nbr);
 }
+
+bool	is_sort(t_pile *p1)
+{
+	t_cont	*iterator;
+
+	iterator = p1->first;
+	while (iterator)
+	{
+		if (!iterator->next)
+			break ;
+		if (iterator->nn > iterator->next->nn)
+			return (false);
+		iterator = iterator->next;
+	}
+	return (true);
+}

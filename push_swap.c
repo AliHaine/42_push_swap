@@ -55,9 +55,11 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	init_struct_def_val(&core);
-	load_main(argv, &core);
-	brain(&core);
-	make_a_sort(&core);
+	if (load_main(argv, &core) > 0)
+	{
+		brain(&core);
+		make_a_sort(&core);
+	}
 	free_struct(&core);
 	return (0);
 }

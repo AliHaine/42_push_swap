@@ -41,62 +41,24 @@ bool	is_str_contains(char *src, char *val)
 
 void	action_writter(char *ac)
 {
-	static int	i = 0;
-
-	if (is_str_contains(ac, "sa") || is_str_contains(ac, "sb"))
+	if (is_str_contains(ac, "sa") || is_str_contains(ac, "sb")
+		|| is_str_contains(ac, "ss"))
 	{
-		if (i == 0)
-		{
-			if (is_str_contains(ac, "sb"))
-				put_str("sb");
-			else
-				put_str("sa");
-		}
-		else
-			i--;
-	}
-	else if (is_str_contains(ac, "ss"))
-	{
-		put_str("ss");
-		i++;
+		write_ss(ac);
 	}
 	else if (is_str_contains(ac, "pa"))
 		put_str("pa");
 	else if (is_str_contains(ac, "pb"))
 		put_str("pb");
-	else if (is_str_contains(ac, "ra") || is_str_contains(ac, "rb"))
+	else if (is_str_contains(ac, "ra") || is_str_contains(ac, "rb")
+		|| is_str_contains(ac, "rr"))
 	{
-		if (i == 0)
-		{
-			if (is_str_contains(ac, "rb"))
-				put_str("rb");
-			else
-				put_str("ra");
-		}
-		else
-			i--;
+		write_rr(ac);
 	}
-	else if (is_str_contains(ac, "rr"))
+	else if (is_str_contains(ac, "rra") || is_str_contains(ac, "rrb")
+		|| is_str_contains(ac, "rrr"))
 	{
-		put_str("rr");
-		i++;
-	}
-	else if (is_str_contains(ac, "rra") || is_str_contains(ac, "rrb"))
-	{
-		if (i == 0)
-		{
-			if (is_str_contains(ac, "rrb"))
-				put_str("rrb");
-			else
-				put_str("rra");
-		}
-		else
-			i--;
-	}
-	else if (is_str_contains(ac, "rrr"))
-	{
-		put_str("rrr");
-		i++;
+		write_rrr(ac);
 	}
 }
 

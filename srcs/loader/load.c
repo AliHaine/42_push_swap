@@ -78,9 +78,8 @@ static void	set_base_pile(t_core *core)
 	}
 }
 
-static void	set_nn(struct s_pile *p1, int size, int i)
+static void	set_nn(struct s_pile *p1, int size, int i, int low)
 {
-	int		low;
 	t_cont	*iterator;
 
 	iterator = p1->first;
@@ -100,9 +99,7 @@ static void	set_nn(struct s_pile *p1, int size, int i)
 			}
 			if (iterator->next == NULL)
 			{
-				get_cont_from_index(p1, i)->nn = size;
-				iterator = p1->first;
-				size++;
+				set_nn_helper(p1, &size, &iterator, i);
 				break ;
 			}
 			iterator = iterator->next;
@@ -110,7 +107,7 @@ static void	set_nn(struct s_pile *p1, int size, int i)
 	}
 }
 
-void	load_main(char **argv, struct s_core *core)
+/*int load_main_splitter(char *argv, struct s_core *core)
 {
 	int	i;
 	int	n;
@@ -124,15 +121,42 @@ void	load_main(char **argv, struct s_core *core)
 		if (is_val_alr(n, core->p1) == true)
 			error_manager(ERROR_ALR_NBR, core);
 		if (!create_new_cont(n, core->p1))
-		{
-			free_struct(core);
-			return ;
-		}
+			return (0);
 		i++;
 	}
-	set_nn(core->p1, 1, 0);
+	set_nn(core->p1, 1, 0, 0);
 	if (core->p1->size == 3)
-		return ;
+		return (1);
+	if (is_sort(core->p1) == true)
+		return (0);
 	set_base_pile(core);
 	sort_base_pile(core);
+	return (1);
+}*/
+
+int	load_main(char **argv, struct s_core *core)
+{
+	int	i;
+	int	n;
+
+	i = 1;
+	while (argv[i])
+	{
+		if (is_number(argv[i]) == false)
+			error_manager(ERROR_NOT_NBR, core);
+		n = get_number(argv[i]);
+		if (is_val_alr(n, core->p1) == true)
+			error_manager(ERROR_ALR_NBR, core);
+		if (!create_new_cont(n, core->p1))
+			return (0);
+		i++;
+	}
+	set_nn(core->p1, 1, 0, 0);
+	if (core->p1->size == 3)
+		return (1);
+	if (is_sort(core->p1) == true)
+		return (0);
+	set_base_pile(core);
+	sort_base_pile(core);
+	return (1);
 }

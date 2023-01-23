@@ -68,48 +68,23 @@ void	rotate_elem(short mode, t_core *core)
 
 void	push_elem(short mode, t_core *core)
 {
-	t_cont	*tmp;
 	t_pile	*r;
 	t_pile	*g;
 
-	tmp = NULL;
-	r = core->p2;
-	g = core->p1;
 	if (mode == 2)
 	{
-		action_writter("pa");
 		r = core->p1;
 		g = core->p2;
+		action_writter("pa");
+		push_elem_pa(r, g);
 	}
 	else
+	{
+		r = core->p2;
+		g = core->p1;
 		action_writter("pb");
-	if (g->first == NULL)
-		return ;
-	if (g->first->next != NULL)
-		tmp = g->first->next;
-	else
-		tmp = g->first;
-	if (r->first == NULL)
-	{
-		r->first = g->first;
-		r->first->next = NULL;
-		r->last = g->first;
+		push_elem_pb(r, g);
 	}
-	else
-	{
-		update_index(r, 1);
-		r->first->prev = g->first;
-		r->first->prev->next = r->first;
-		r->first = r->first->prev;
-	}
-	r->first->prev = NULL;
-	g->first = tmp;
-	g->first->prev = NULL;
-	if (tmp == NULL)
-		g->last = NULL;
-	r->size++;
-	g->size--;
-	update_index(g, -1);
 }
 
 void	swap_elem(short mode, t_core *core)

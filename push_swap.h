@@ -46,7 +46,7 @@ typedef struct s_core
 	struct s_pile	*p2;
 }					t_core;
 
-void	load_main(char **argv, struct s_core *core);
+int		load_main(char **argv, struct s_core *core);
 void	sort_base_pile(t_core *core);
 bool	is_str_contains(char *src, char *val);
 void	action_writter(char *ac);
@@ -55,6 +55,13 @@ int		ft_atoi(char *s);
 bool	is_digit(char c);
 bool	is_number(char *s);
 int		get_number(char *s);
+bool	is_sort(t_pile *p1);
+void	set_nn_helper(t_pile *p1, int *size, t_cont **iterator, int i);
+void	push_elem_pb(t_pile *r, t_pile *g);
+void	push_elem_pa(t_pile *r, t_pile *g);
+void	write_ss(char *ac);
+void	write_rr(char *ac);
+void	write_rrr(char *ac);
 void	update_index(struct s_pile *p, int i);
 void	free_struct(t_core *core);
 t_cont	*get_cont_from_index(struct s_pile *p, int index);

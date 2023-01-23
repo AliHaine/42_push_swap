@@ -105,7 +105,7 @@ void	brain(t_core *core)
 	t_cont		*cont;
 	int			saveca;
 	int			i;
-	int 		place;
+	int			place;
 
 	i = 0;
 	while (core->p2->size > 0)
