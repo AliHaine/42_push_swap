@@ -62,11 +62,11 @@ void	action_writter(char *ac)
 	}
 }
 
-int	ft_atoi(char *s)
+long long int	ft_atoi(char *s)
 {
-	int		i;
-	int		result;
-	short	sign;
+	int					i;
+	long long int		result;
+	short				sign;
 
 	i = 0;
 	result = 0;

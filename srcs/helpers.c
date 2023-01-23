@@ -83,3 +83,18 @@ void	set_nn_helper(t_pile *p1, int *size, t_cont **iterator, int i)
 	*iterator = p1->first;
 	*size = *size + 1;
 }
+
+void	sort_helper(t_core *core, t_cont *n2, t_cont *n3)
+{
+	if (core->p1->first->nn > n2->nn && n2->nn < n3->nn
+		&& core->p1->first->nn < n3->nn)
+		swap_elem(1, core);
+	else if (core->p1->first->nn > n2->nn && n2->nn < n3->nn
+			 && core->p1->first->nn > n3->nn)
+	{
+		reverse_rotate_elem(1, core);
+		reverse_rotate_elem(1, core);
+	}
+	else
+		reverse_rotate_elem(1, core);
+}

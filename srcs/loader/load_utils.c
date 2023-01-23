@@ -35,9 +35,9 @@ bool	is_number(char *s)
 	return (true);
 }
 
-int	get_number(char *s)
+long long int	get_number(char *s)
 {
-	int	nbr;
+	long long int	nbr;
 
 	nbr = ft_atoi(s);
 	return (nbr);
@@ -57,4 +57,21 @@ bool	is_sort(t_pile *p1)
 		iterator = iterator->next;
 	}
 	return (true);
+}
+
+long long int	get_number_from_single(char *argv)
+{
+	int				i;
+	long long int	nbr
+
+	i = 0;
+	while (argv[i])
+	{
+		if (argv[i] == ' ')
+			break ;
+		else if (argv[i] < 0 && argv[i] > 9)
+			i++;
+		else
+
+	}
 }

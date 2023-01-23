@@ -12,21 +12,6 @@
 
 #include "../../push_swap.h"
 
-static void	sort_helper(t_core *core, t_cont *n2, t_cont *n3)
-{
-	if (core->p1->first->nn > n2->nn && n2->nn < n3->nn
-		&& core->p1->first->nn < n3->nn)
-		swap_elem(1, core);
-	else if (core->p1->first->nn > n2->nn && n2->nn < n3->nn
-		&& core->p1->first->nn > n3->nn)
-	{
-		reverse_rotate_elem(1, core);
-		reverse_rotate_elem(1, core);
-	}
-	else
-		reverse_rotate_elem(1, core);
-}
-
 void	sort_base_pile(t_core *core)
 {
 	t_cont	*n2;
@@ -107,7 +92,7 @@ static void	set_nn(struct s_pile *p1, int size, int i, int low)
 	}
 }
 
-/*int load_main_splitter(char *argv, struct s_core *core)
+int load_main_splitter(char *argv, struct s_core *core)
 {
 	int	i;
 	int	n;
@@ -132,12 +117,12 @@ static void	set_nn(struct s_pile *p1, int size, int i, int low)
 	set_base_pile(core);
 	sort_base_pile(core);
 	return (1);
-}*/
+}
 
 int	load_main(char **argv, struct s_core *core)
 {
-	int	i;
-	int	n;
+	int				i;
+	long long int	n;
 
 	i = 1;
 	while (argv[i])
@@ -145,6 +130,8 @@ int	load_main(char **argv, struct s_core *core)
 		if (is_number(argv[i]) == false)
 			error_manager(ERROR_NOT_NBR, core);
 		n = get_number(argv[i]);
+		if (n > 2147483647 || n < -2147483648)
+			return (0);
 		if (is_val_alr(n, core->p1) == true)
 			error_manager(ERROR_ALR_NBR, core);
 		if (!create_new_cont(n, core->p1))
