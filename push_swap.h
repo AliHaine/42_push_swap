@@ -47,7 +47,8 @@ typedef struct s_core
 }					t_core;
 
 int					load_main(char **argv, struct s_core *core);
-void				sort_base_pile(t_core *core);
+int					load_main_splitter(char *argv, struct s_core *core);
+int					sort_base_pile(t_core *core);
 bool				is_str_contains(char *src, char *val);
 void				action_writter(char *ac);
 void				error_manager(char *msg, t_core *core);

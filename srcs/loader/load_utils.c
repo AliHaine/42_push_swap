@@ -58,20 +58,3 @@ bool	is_sort(t_pile *p1)
 	}
 	return (true);
 }
-
-long long int	get_number_from_single(char *argv)
-{
-	int				i;
-	long long int	nbr
-
-	i = 0;
-	while (argv[i])
-	{
-		if (argv[i] == ' ')
-			break ;
-		else if (argv[i] < 0 && argv[i] > 9)
-			i++;
-		else
-
-	}
-}

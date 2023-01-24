@@ -12,15 +12,16 @@
 
 #include "../../push_swap.h"
 
-void	sort_base_pile(t_core *core)
+int	sort_base_pile(t_core *core)
 {
 	t_cont	*n2;
 	t_cont	*n3;
 
 	n2 = core->p1->first->next;
 	n3 = core->p1->first->next->next;
+	//printf("oui");
 	if (core->p1->first->nn < n2->nn && n2->nn < n3->nn)
-		return ;
+		return (0);
 	else if (core->p1->first->nn < n2->nn && n2->nn > n3->nn
 		&& core->p1->first->nn < n3->nn)
 	{
@@ -34,6 +35,7 @@ void	sort_base_pile(t_core *core)
 	}
 	else
 		sort_helper(core, n2, n3);
+	return (0);
 }
 
 static void	set_base_pile(t_core *core)
@@ -92,33 +94,6 @@ static void	set_nn(struct s_pile *p1, int size, int i, int low)
 	}
 }
 
-int load_main_splitter(char *argv, struct s_core *core)
-{
-	int	i;
-	int	n;
-
-	i = 1;
-	while (argv[i])
-	{
-		if (is_number(argv[i]) == false)
-			error_manager(ERROR_NOT_NBR, core);
-		n = get_number(argv[i]);
-		if (is_val_alr(n, core->p1) == true)
-			error_manager(ERROR_ALR_NBR, core);
-		if (!create_new_cont(n, core->p1))
-			return (0);
-		i++;
-	}
-	set_nn(core->p1, 1, 0, 0);
-	if (core->p1->size == 3)
-		return (1);
-	if (is_sort(core->p1) == true)
-		return (0);
-	set_base_pile(core);
-	sort_base_pile(core);
-	return (1);
-}
-
 int	load_main(char **argv, struct s_core *core)
 {
 	int				i;
@@ -140,7 +115,7 @@ int	load_main(char **argv, struct s_core *core)
 	}
 	set_nn(core->p1, 1, 0, 0);
 	if (core->p1->size == 3)
-		return (1);
+		return (sort_base_pile(core));
 	if (is_sort(core->p1) == true)
 		return (0);
 	set_base_pile(core);
