@@ -46,11 +46,11 @@ typedef struct s_core
 	struct s_pile	*p2;
 }					t_core;
 
-int					load_main(char **argv, struct s_core *core);
-int					load_main_splitter(char *argv, struct s_core *core);
+int					load_main(char **argv, struct s_core *core, int i);
+int					load_main_splitter(char *argv, struct s_core *core, int i);
 int					sort_base_pile(t_core *core);
 bool				is_str_contains(char *src, char *val);
-void				action_writter(char *ac);
+void				action_writter(char *ac, bool writer);
 void				error_manager(char *msg, t_core *core);
 long long int		ft_atoi(char *s);
 bool				is_digit(char c);
@@ -82,5 +82,6 @@ int					costb(int index, t_pile *p2);
 int					get_total_cost(t_core *core);
 void				action_spammer(char *str, int count, t_core *core);
 void				brain(t_core *core);
+int					brain_short(t_core *core);
 
 #endif

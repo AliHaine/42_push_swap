@@ -19,11 +19,11 @@ void	reverse_rotate_elem(short mode, t_core *core)
 	target = core->p2;
 	if (mode == 1)
 	{
-		action_writter("rra");
+		action_writter("rra", true);
 		target = core->p1;
 	}
 	else
-		action_writter("rrb");
+		action_writter("rrb", true);
 	update_index(target, 1);
 	target->first->prev = target->last;
 	target->last = target->last->prev;
@@ -35,7 +35,7 @@ void	reverse_rotate_elem(short mode, t_core *core)
 	if (mode == 3)
 	{
 		reverse_rotate_elem(1, core);
-		action_writter("rrr");
+		action_writter("rrr", true);
 	}
 }
 
@@ -46,11 +46,11 @@ void	rotate_elem(short mode, t_core *core)
 	target = core->p2;
 	if (mode == 1)
 	{
-		action_writter("ra");
+		action_writter("ra", true);
 		target = core->p1;
 	}
 	else
-		action_writter("rb");
+		action_writter("rb", true);
 	update_index(target, -1);
 	target->last->next = target->first;
 	target->first = target->first->next;
@@ -61,7 +61,7 @@ void	rotate_elem(short mode, t_core *core)
 	target->last->index = target->last->prev->index + 1;
 	if (mode == 3)
 	{
-		action_writter("rr");
+		action_writter("rr", true);
 		rotate_elem(1, core);
 	}
 }
@@ -75,14 +75,14 @@ void	push_elem(short mode, t_core *core)
 	{
 		r = core->p1;
 		g = core->p2;
-		action_writter("pa");
+		action_writter("pa", true);
 		push_elem_pa(r, g);
 	}
 	else
 	{
 		r = core->p2;
 		g = core->p1;
-		action_writter("pb");
+		action_writter("pb", true);
 		push_elem_pb(r, g);
 	}
 }
@@ -95,11 +95,11 @@ void	swap_elem(short mode, t_core *core)
 	target = core->p2;
 	if (mode == 1)
 	{
-		action_writter("sa");
+		action_writter("sa", true);
 		target = core->p1;
 	}
 	else
-		action_writter("sb");
+		action_writter("sb", true);
 	tmp = target->first->next;
 	target->first->next = tmp->next;
 	target->first->prev = tmp;
@@ -112,7 +112,7 @@ void	swap_elem(short mode, t_core *core)
 	if (mode == 3)
 	{
 		swap_elem(2, core);
-		action_writter("ss");
+		action_writter("ss", true);
 	}
 }
 

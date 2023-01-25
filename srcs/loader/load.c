@@ -19,7 +19,6 @@ int	sort_base_pile(t_core *core)
 
 	n2 = core->p1->first->next;
 	n3 = core->p1->first->next->next;
-	//printf("oui");
 	if (core->p1->first->nn < n2->nn && n2->nn < n3->nn)
 		return (0);
 	else if (core->p1->first->nn < n2->nn && n2->nn > n3->nn
@@ -94,12 +93,10 @@ static void	set_nn(struct s_pile *p1, int size, int i, int low)
 	}
 }
 
-int	load_main(char **argv, struct s_core *core)
+int	load_main(char **argv, struct s_core *core, int i)
 {
-	int				i;
 	long long int	n;
 
-	i = 1;
 	while (argv[i])
 	{
 		if (is_number(argv[i]) == false)
@@ -120,5 +117,7 @@ int	load_main(char **argv, struct s_core *core)
 		return (0);
 	set_base_pile(core);
 	sort_base_pile(core);
+	if (core->p1->size + core->p2->size == 5)
+		return (5);
 	return (1);
 }

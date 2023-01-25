@@ -44,6 +44,34 @@ static void	init_struct_def_val(t_core *core)
 	core->p2->size = 0;
 }
 
+static void	pre_load(t_core *core, char **argv, int argc)
+{
+	int att;
+
+	if (argc == 2)
+	{
+		att = load_main_splitter(argv[1], core, 0);
+		if (att == 1)
+		{
+			brain(core);
+			make_a_sort(core);
+		}
+		else if (att == 5)
+			brain_short(core);
+	}
+	else
+	{
+		att = load_main(argv, core, 1);
+		if (att == 1)
+		{
+			brain(core);
+			make_a_sort(core);
+		}
+		else if (att == 5)
+			brain_short(core);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_core	core;
@@ -55,22 +83,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	init_struct_def_val(&core);
-	if (argc == 2)
-	{
-		if (load_main_splitter(argv[1], &core) > 0)
-		{
-			brain(&core);
-			make_a_sort(&core);
-		}
-	}
-	else
-	{
-		if (load_main(argv, &core) > 0)
-		{
-			brain(&core);
-			make_a_sort(&core);
-		}
-	}
+	pre_load(&core, argv, argc);
 	free_struct(&core);
 	return (0);
 }

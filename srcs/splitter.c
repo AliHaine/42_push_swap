@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   splitter.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayagmur <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/25 15:32:35 by ayagmur           #+#    #+#             */
+/*   Updated: 2023/01/25 15:32:38 by ayagmur          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../push_swap.h"
 
@@ -60,11 +71,10 @@ static void	set_nn(struct s_pile *p1, int size, int i, int low)
 static long long int	get_number_from_single(char *argv, int *i)
 {
 	long long int	nbr;
-	short	sign;
+	short			sign;
 
 	sign = 1;
 	nbr = 0;
-
 	if (argv[*i] == '-')
 	{
 		sign = -1;
@@ -80,7 +90,7 @@ static long long int	get_number_from_single(char *argv, int *i)
 		}
 		*i = *i + 1;
 	}
-	return (nbr / 10) * sign;
+	return ((nbr / 10) * sign);
 }
 
 static bool	is_number_single(char *s, int i)
@@ -100,13 +110,12 @@ static bool	is_number_single(char *s, int i)
 	return (true);
 }
 
-int load_main_splitter(char *argv, struct s_core *core)
+int	load_main_splitter(char *argv, struct s_core *core, int i)
 {
-	int i;
-	long long int n;
+	long long int	n;
 
-	i = 0;
-	while (argv[i]) {
+	while (argv[i])
+	{
 		if (is_number_single(argv, i) == false)
 			error_manager(ERROR_NOT_NBR, core);
 		n = get_number_from_single(argv, &i);
@@ -126,5 +135,7 @@ int load_main_splitter(char *argv, struct s_core *core)
 		return (0);
 	set_base_pile(core);
 	sort_base_pile(core);
+	if (core->p1->size == 5)
+		return (5);
 	return (1);
 }

@@ -39,8 +39,10 @@ bool	is_str_contains(char *src, char *val)
 	return (true);
 }
 
-void	action_writter(char *ac)
+void	action_writter(char *ac, bool write)
 {
+	if (write == false)
+		return ;
 	if (is_str_contains(ac, "sa") || is_str_contains(ac, "sb")
 		|| is_str_contains(ac, "ss"))
 	{
