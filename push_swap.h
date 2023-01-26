@@ -34,7 +34,6 @@ typedef struct s_cont
 
 typedef struct s_pile
 {
-	struct s_cont	*cont;
 	struct s_cont	*last;
 	struct s_cont	*first;
 	int				size;
@@ -67,10 +66,10 @@ void				write_rrr(char *ac);
 void				update_index(struct s_pile *p, int i);
 void				free_struct(t_core *core);
 t_cont				*get_cont_from_index(struct s_pile *p, int index);
-void				reverse_rotate_elem(short mode, t_core *core);
-void				rotate_elem(short mode, t_core *core);
-void				push_elem(short mode, t_core *core);
-void				swap_elem(short mode, t_core *core);
+void				reverse_rotate_elem(short mode, t_core *core, bool write);
+void				rotate_elem(short mode, t_core *core, bool write);
+void				push_elem(short mode, t_core *core, bool write);
+void				swap_elem(short mode, t_core *core, bool write);
 bool				create_new_cont(int n, struct s_pile *p);
 bool				is_val_alr(int i, struct s_pile *p);
 bool				is_less_nn(int nn, t_pile *p);

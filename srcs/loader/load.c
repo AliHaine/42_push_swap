@@ -24,13 +24,13 @@ int	sort_base_pile(t_core *core)
 	else if (core->p1->first->nn < n2->nn && n2->nn > n3->nn
 		&& core->p1->first->nn < n3->nn)
 	{
-		reverse_rotate_elem(1, core);
-		swap_elem(1, core);
+		reverse_rotate_elem(1, core, true);
+		swap_elem(1, core, true);
 	}
 	else if (core->p1->first->nn > n2->nn && n2->nn > n3->nn)
 	{
-		rotate_elem(1, core);
-		swap_elem(1, core);
+		rotate_elem(1, core, true);
+		swap_elem(1, core, true);
 	}
 	else
 		sort_helper(core, n2, n3);
@@ -48,18 +48,18 @@ static void	set_base_pile(t_core *core)
 	{
 		if (core->p1->first->nn <= size)
 		{
-			push_elem(1, core);
+			push_elem(1, core, true);
 			i++;
 			if (i == size)
 				break ;
 		}
 		else
-			rotate_elem(1, core);
+			rotate_elem(1, core, true);
 	}
 	size = core->p1->size;
 	while (size != 3)
 	{
-		push_elem(1, core);
+		push_elem(1, core, true);
 		size--;
 	}
 }

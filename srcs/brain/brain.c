@@ -125,10 +125,10 @@ void	brain(t_core *core)
 				else
 					set_toreceive_a(saveca / 2, core, place);
 			}
-			push_elem(2, core);
+			push_elem(2, core, true);
 			while (sncf_grp(core) == true)
 			{
-				push_elem(2, core);
+				push_elem(2, core, true);
 				i++;
 			}
 			i = 0;

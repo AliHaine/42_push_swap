@@ -23,18 +23,18 @@ static void	set_base_pile(t_core *core)
 	{
 		if (core->p1->first->nn <= size)
 		{
-			push_elem(1, core);
+			push_elem(1, core, true);
 			i++;
 			if (i == size)
 				break ;
 		}
 		else
-			rotate_elem(1, core);
+			rotate_elem(1, core, true);
 	}
 	size = core->p1->size;
 	while (size != 3)
 	{
-		push_elem(1, core);
+		push_elem(1, core, true);
 		size--;
 	}
 }

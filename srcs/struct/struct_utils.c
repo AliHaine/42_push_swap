@@ -74,25 +74,25 @@ void	action_spammer(char *str, int count, t_core *core)
 	while (count > 0)
 	{
 		if (is_str_contains(str, "pa"))
-			push_elem(2, core);
+			push_elem(2, core, true);
 		else if (is_str_contains(str, "pb"))
-			push_elem(1, core);
+			push_elem(1, core, true);
 		else if (is_str_contains(str, "ra"))
-			rotate_elem(1, core);
+			rotate_elem(1, core, true);
 		else if (is_str_contains(str, "rb"))
-			rotate_elem(2, core);
+			rotate_elem(2, core, true);
 		else if (is_str_contains(str, "rr"))
-			rotate_elem(3, core);
+			rotate_elem(3, core, true);
 		else if (is_str_contains(str, "rra"))
-			reverse_rotate_elem(1, core);
+			reverse_rotate_elem(1, core, true);
 		else if (is_str_contains(str, "rrb"))
-			reverse_rotate_elem(2, core);
+			reverse_rotate_elem(2, core, true);
 		else if (is_str_contains(str, "rrr"))
-			reverse_rotate_elem(3, core);
+			reverse_rotate_elem(3, core, true);
 		else if (is_str_contains(str, "sa"))
-			swap_elem(1, core);
+			swap_elem(1, core, true);
 		else if (is_str_contains(str, "sb"))
-			swap_elem(2, core);
+			swap_elem(2, core, true);
 		count--;
 	}
 }

@@ -26,12 +26,12 @@ static void	make_a_sort(t_core *core)
 	while (cont->index != 1)
 	{
 		if (cont->index >= core->p1->size / 2)
-			reverse_rotate_elem(1, core);
+			reverse_rotate_elem(1, core, true);
 		else
-			rotate_elem(1, core);
+			rotate_elem(1, core, true);
 	}
 	if (cont->prev)
-		rotate_elem(1, core);
+		rotate_elem(1, core, true);
 }
 
 static void	init_struct_def_val(t_core *core)

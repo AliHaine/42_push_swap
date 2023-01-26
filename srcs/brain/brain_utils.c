@@ -69,6 +69,6 @@ bool	sncf_grp(t_core *core)
 
 void	set_to_last(t_core *core)
 {
-	push_elem(2, core);
-	rotate_elem(1, core);
+	push_elem(2, core, true);
+	rotate_elem(1, core, true);
 }

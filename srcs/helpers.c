@@ -88,13 +88,13 @@ void	sort_helper(t_core *core, t_cont *n2, t_cont *n3)
 {
 	if (core->p1->first->nn > n2->nn && n2->nn < n3->nn
 		&& core->p1->first->nn < n3->nn)
-		swap_elem(1, core);
+		swap_elem(1, core, true);
 	else if (core->p1->first->nn > n2->nn && n2->nn < n3->nn
 		&& core->p1->first->nn > n3->nn)
 	{
-		reverse_rotate_elem(1, core);
-		reverse_rotate_elem(1, core);
+		reverse_rotate_elem(1, core, true);
+		reverse_rotate_elem(1, core, true);
 	}
 	else
-		reverse_rotate_elem(1, core);
+		reverse_rotate_elem(1, core, true);
 }

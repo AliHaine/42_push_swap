@@ -19,10 +19,11 @@ static int	get_minv_val(int *cost)
 
 	i = 0;
 	minval = cost[i];
-	while (cost[i++])
+	while (cost[i])
 	{
-		if (cost[i] < minval & cost[i] != 0)
+		if (cost[i] < minval && cost[i] != 0)
 			minval = cost[i];
+		i++;
 	}
 	i = 0;
 	while (cost[i] != minval)
@@ -39,9 +40,10 @@ int	get_total_cost(t_core *core)
 	int		i;
 	t_cont	*iterator;
 
-	cost = malloc(sizeof(int) * core->p2->size + 1);
+	cost = malloc(sizeof(int) * core->p2->size);
 	if (cost == NULL)
 		return (0);
+	printf("%d\n", core->p2->size);
 	iterator = core->p2->first;
 	i = 0;
 	while (iterator)

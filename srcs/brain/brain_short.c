@@ -45,7 +45,7 @@ static void	make_ac(t_core *core)
 		iterator = iterator->next;
 	}
 	action_spammer("ra", i, core);
-	push_elem(2, core);
+	push_elem(2, core, true);
 	action_spammer("rra", i, core);
 }
 
@@ -58,7 +58,7 @@ int	brain_short(t_core *core)
 	{
 		is_lower = is_low(core);
 		if (is_lower == true)
-			push_elem(2, core);
+			push_elem(2, core, true);
 		else
 			make_ac(core);
 	}
