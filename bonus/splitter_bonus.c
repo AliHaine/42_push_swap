@@ -1,45 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   splitter.c                                         :+:      :+:    :+:   */
+/*   splitter_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayagmur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 15:32:35 by ayagmur           #+#    #+#             */
-/*   Updated: 2023/01/25 15:32:38 by ayagmur          ###   ########.fr       */
+/*   Created: 2023/01/27 15:46:04 by ayagmur           #+#    #+#             */
+/*   Updated: 2023/01/27 15:46:07 by ayagmur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
-
-static void	set_nn(struct s_pile *p1, int size, int i, int low)
-{
-	t_cont	*iterator;
-
-	iterator = p1->first;
-	while (size - 1 < p1->size)
-	{
-		while (iterator->nn != 0)
-			iterator = iterator->next;
-		i = iterator->index;
-		low = iterator->val;
-		iterator = p1->first;
-		while (1)
-		{
-			if (iterator->val < low && iterator->nn == 0)
-			{
-				i = iterator->index;
-				low = iterator->val;
-			}
-			if (iterator->next == NULL)
-			{
-				set_nn_helper(p1, &size, &iterator, i);
-				break ;
-			}
-			iterator = iterator->next;
-		}
-	}
-}
+#include "../push_swap_bonus.h"
 
 static long long int	get_number_from_single(char *argv, int *i)
 {
@@ -83,7 +54,7 @@ static bool	is_number_single(char *s, int i)
 	return (true);
 }
 
-int	load_main_splitter(char *argv, struct s_core *core, int i)
+int	load_main_splitter_bonus(char *argv, struct s_core *core, int i)
 {
 	long long int	n;
 
@@ -101,13 +72,5 @@ int	load_main_splitter(char *argv, struct s_core *core, int i)
 		if (argv[i])
 			i++;
 	}
-	set_nn(core->p1, 1, 0, 0);
-	if (core->p1->size == 3)
-		return (sort_base_pile(core));
-	if (is_sort(core->p1) == true)
-		return (0);
-	loader_line(core);
-	if (core->p1->size == 5)
-		return (5);
 	return (1);
 }

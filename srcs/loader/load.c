@@ -37,33 +37,6 @@ int	sort_base_pile(t_core *core)
 	return (0);
 }
 
-static void	set_base_pile(t_core *core)
-{
-	int	size;
-	int	i;
-
-	size = core->p1->size / 2;
-	i = 0;
-	while (1)
-	{
-		if (core->p1->first->nn <= size)
-		{
-			push_elem(1, core, true);
-			i++;
-			if (i == size)
-				break ;
-		}
-		else
-			rotate_elem(1, core, true);
-	}
-	size = core->p1->size;
-	while (size != 3)
-	{
-		push_elem(1, core, true);
-		size--;
-	}
-}
-
 static void	set_nn(struct s_pile *p1, int size, int i, int low)
 {
 	t_cont	*iterator;
@@ -115,8 +88,7 @@ int	load_main(char **argv, struct s_core *core, int i)
 		return (sort_base_pile(core));
 	if (is_sort(core->p1) == true)
 		return (0);
-	set_base_pile(core);
-	sort_base_pile(core);
+	loader_line(core);
 	if (core->p1->size + core->p2->size == 5)
 		return (5);
 	return (1);

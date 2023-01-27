@@ -40,10 +40,9 @@ int	get_total_cost(t_core *core)
 	int		i;
 	t_cont	*iterator;
 
-	cost = malloc(sizeof(int) * core->p2->size);
+	cost = malloc((sizeof(int) * core->p2->size) + 1);
 	if (cost == NULL)
 		return (0);
-	printf("%d\n", core->p2->size);
 	iterator = core->p2->first;
 	i = 0;
 	while (iterator)

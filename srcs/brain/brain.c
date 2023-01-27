@@ -80,34 +80,20 @@ static int	find_place(t_pile *p, int nn)
 	return (0);
 }
 
-void	set_toreceive_a(int spam, t_core *core, int place)
+static void	brain_cation(int saveca, t_cont *cont, t_core *core, int place)
 {
-	if (place >= core->p1->size / 2)
-	{
-		action_spammer("rra", spam, core);
-	}
+	if (saveca % 2 > 0 && !is_bigger_nn(cont->nn, core->p1))
+		set_toreceive_a(saveca / 2 + 1, core, place);
 	else
-	{
-		action_spammer("ra", spam, core);
-	}
+		set_toreceive_a(saveca / 2, core, place);
 }
 
-void	set_topush_b(int spam, int index, t_core *core)
-{
-	if (index >= core->p2->size / 2)
-		action_spammer("rrb", spam, core);
-	else
-		action_spammer("rb", spam, core);
-}
-
-void	brain(t_core *core)
+void	brain(t_core *core, int i)
 {
 	t_cont		*cont;
 	int			saveca;
-	int			i;
 	int			place;
 
-	i = 0;
 	while (core->p2->size > 0)
 	{
 		cont = get_cont_from_index(core->p2, get_total_cost(core));
@@ -119,12 +105,7 @@ void	brain(t_core *core)
 		else
 		{
 			if (saveca > 0)
-			{
-				if (saveca % 2 > 0 && !is_bigger_nn(cont->nn, core->p1))
-					set_toreceive_a(saveca / 2 + 1, core, place);
-				else
-					set_toreceive_a(saveca / 2, core, place);
-			}
+				brain_cation(saveca, cont, core, place);
 			push_elem(2, core, true);
 			while (sncf_grp(core) == true)
 			{

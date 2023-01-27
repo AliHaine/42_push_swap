@@ -46,14 +46,14 @@ static void	init_struct_def_val(t_core *core)
 
 static void	pre_load(t_core *core, char **argv, int argc)
 {
-	int att;
+	int	att;
 
 	if (argc == 2)
 	{
 		att = load_main_splitter(argv[1], core, 0);
 		if (att == 1)
 		{
-			brain(core);
+			brain(core, 0);
 			make_a_sort(core);
 		}
 		else if (att == 5)
@@ -64,7 +64,7 @@ static void	pre_load(t_core *core, char **argv, int argc)
 		att = load_main(argv, core, 1);
 		if (att == 1)
 		{
-			brain(core);
+			brain(core, 0);
 			make_a_sort(core);
 		}
 		else if (att == 5)

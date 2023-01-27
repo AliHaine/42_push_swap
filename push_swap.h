@@ -80,7 +80,10 @@ int					costa(t_cont *cont, t_pile *p1);
 int					costb(int index, t_pile *p2);
 int					get_total_cost(t_core *core);
 void				action_spammer(char *str, int count, t_core *core);
-void				brain(t_core *core);
+void				brain(t_core *core, int i);
 int					brain_short(t_core *core);
+void				loader_line(t_core *core);
+void				set_toreceive_a(int spam, t_core *core, int place);
+void				set_topush_b(int spam, int index, t_core *core);
 
 #endif
