@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-static void	set_nn(struct s_pile *p1, int size, int i, int low)
+void	set_nn(struct s_pile *p1, int size, int i, int low)
 {
 	t_cont	*iterator;
 

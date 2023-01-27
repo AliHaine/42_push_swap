@@ -16,7 +16,9 @@
 #include "get_next_line/get_next_line.h"
 #include "push_swap.h"
 
-int	load_main_bonus(char **argv, struct s_core *core, int i);
-int	load_main_splitter_bonus(char *argv, struct s_core *core, int i);
+int		load_main_bonus(char **argv, struct s_core *core, int i);
+int		load_main_splitter_bonus(char *argv, struct s_core *core, int i);
+void	set_nn_bonus(struct s_pile *p1, int size, int i, int low);
+bool	is_sort_bonus(t_pile *p1);
 
 #endif

@@ -45,6 +45,7 @@ typedef struct s_core
 	struct s_pile	*p2;
 }					t_core;
 
+void				set_nn(struct s_pile *p1, int size, int i, int low);
 int					load_main(char **argv, struct s_core *core, int i);
 int					load_main_splitter(char *argv, struct s_core *core, int i);
 int					sort_base_pile(t_core *core);

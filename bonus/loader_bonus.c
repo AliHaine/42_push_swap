@@ -12,6 +12,51 @@
 
 #include "../push_swap_bonus.h"
 
+void	set_nn_bonus(struct s_pile *p1, int size, int i, int low)
+{
+	t_cont	*iterator;
+
+	iterator = p1->first;
+	while (size - 1 < p1->size)
+	{
+		while (iterator->nn != 0)
+			iterator = iterator->next;
+		i = iterator->index;
+		low = iterator->val;
+		iterator = p1->first;
+		while (1)
+		{
+			if (iterator->val < low && iterator->nn == 0)
+			{
+				i = iterator->index;
+				low = iterator->val;
+			}
+			if (iterator->next == NULL)
+			{
+				set_nn_helper(p1, &size, &iterator, i);
+				break ;
+			}
+			iterator = iterator->next;
+		}
+	}
+}
+
+bool	is_sort_bonus(t_pile *p1)
+{
+	t_cont	*iterator;
+
+	iterator = p1->first;
+	while (iterator)
+	{
+		if (!iterator->next)
+			break ;
+		if (iterator->nn > iterator->next->nn)
+			return (false);
+		iterator = iterator->next;
+	}
+	return (true);
+}
+
 int	load_main_bonus(char **argv, struct s_core *core, int i)
 {
 	long long int	n;

@@ -77,6 +77,7 @@ static void	pre_load(t_core *core, char **argv, int argc)
 		load_main_splitter_bonus(argv[1], core, 0);
 	else
 		load_main_bonus(argv, core, 1);
+	set_nn_bonus(core->p1, 1, 0, 0);
 }
 
 int	main(int argc, char **argv)
@@ -99,7 +100,7 @@ int	main(int argc, char **argv)
 		free(line);
 		line = get_next_line(0);
 	}
-	if (is_sort(core.p1) && core.p2->size == 0)
+	if (is_sort_bonus(core.p1) && core.p2->size == 0)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);

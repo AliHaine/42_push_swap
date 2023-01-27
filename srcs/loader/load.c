@@ -37,35 +37,6 @@ int	sort_base_pile(t_core *core)
 	return (0);
 }
 
-static void	set_nn(struct s_pile *p1, int size, int i, int low)
-{
-	t_cont	*iterator;
-
-	iterator = p1->first;
-	while (size - 1 < p1->size)
-	{
-		while (iterator->nn != 0)
-			iterator = iterator->next;
-		i = iterator->index;
-		low = iterator->val;
-		iterator = p1->first;
-		while (1)
-		{
-			if (iterator->val < low && iterator->nn == 0)
-			{
-				i = iterator->index;
-				low = iterator->val;
-			}
-			if (iterator->next == NULL)
-			{
-				set_nn_helper(p1, &size, &iterator, i);
-				break ;
-			}
-			iterator = iterator->next;
-		}
-	}
-}
-
 int	load_main(char **argv, struct s_core *core, int i)
 {
 	long long int	n;
