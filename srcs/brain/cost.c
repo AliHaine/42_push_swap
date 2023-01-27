@@ -6,7 +6,7 @@
 /*   By: ayagmur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:42:51 by ayagmur           #+#    #+#             */
-/*   Updated: 2023/01/21 15:42:55 by ayagmur          ###   ########.fr       */
+/*   Updated: 2023/01/27 16:30:31 by ayagmur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ int	get_total_cost(t_core *core)
 	int		i;
 	t_cont	*iterator;
 
-	cost = malloc((sizeof(int) * core->p2->size) + 1);
+	cost = malloc((sizeof(int)) * (core->p2->size + 1));
+	if (!cost)
+		return (0);
+	cost[core->p2->size] = 0;
 	if (cost == NULL)
 		return (0);
 	iterator = core->p2->first;
@@ -53,6 +56,5 @@ int	get_total_cost(t_core *core)
 		iterator = iterator->next;
 		i++;
 	}
-	cost[i] = 0;
 	return (get_minv_val(cost));
 }
